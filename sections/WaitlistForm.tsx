@@ -19,26 +19,39 @@ export const WaitlistForm: React.FC = () => {
     setIsSubmitting(true);
     setError(null);
 
+    const webhookUrl = import.meta.env.VITE_WEBHOOK_URL;
+
+    if (!webhookUrl) {
+      console.error('VITE_WEBHOOK_URL is not configured');
+      setError('Form submission is not configured. Please contact support.');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      const response = await fetch(import.meta.env.VITE_WEBHOOK_URL, {
+      const payload = {
+        ...formData,
+        phone: formData.phone ? `+971${formData.phone}` : '',
+        submittedAt: new Date().toISOString()
+      };
+
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          ...formData,
-          phone: `+971${formData.phone}`,
-          submittedAt: new Date().toISOString()
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
+        console.error('Webhook response not ok:', response.status, response.statusText);
         throw new Error('Failed to submit');
       }
 
       setIsSubmitted(true);
       setFormData({ name: '', email: '', phone: '', problem: '' });
     } catch (err) {
+      console.error('Form submission error:', err);
       setError('Something went wrong. Please try again.');
     } finally {
       setIsSubmitting(false);
