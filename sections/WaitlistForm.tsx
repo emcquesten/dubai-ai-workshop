@@ -137,7 +137,7 @@ export const WaitlistForm: React.FC = () => {
                 {/* Phone */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Phone Number
+                    Phone Number <span className="text-gray-400 font-normal">(Optional)</span>
                   </label>
                   <div className="relative">
                     <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 font-medium">+971</span>
@@ -148,7 +148,6 @@ export const WaitlistForm: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       className="w-full pl-20 pr-5 py-4 bg-surface border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
                       placeholder="50 123 4567"
-                      required
                       disabled={isSubmitting}
                     />
                   </div>
