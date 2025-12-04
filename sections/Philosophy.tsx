@@ -22,7 +22,7 @@ export const Philosophy: React.FC = () => {
             <div className="h-12 w-px bg-gradient-to-b from-transparent via-gray-200 to-transparent mx-auto"></div>
 
             <p className="font-body text-xl md:text-2xl font-normal text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Sometimes the answer isn't AI. We'll help you figure out when it is - and when it isn't.
+              Sometimes the answer isn't AI. We'll help you figure out when it is, and when it isn't.
             </p>
           </div>
         </motion.div>
