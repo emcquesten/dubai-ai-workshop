@@ -8,6 +8,7 @@ export const WaitlistForm: React.FC = () => {
     name: '',
     email: '',
     phone: '',
+    experienceLevel: '',
     problem: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,7 +50,7 @@ export const WaitlistForm: React.FC = () => {
       }
 
       setIsSubmitted(true);
-      setFormData({ name: '', email: '', phone: '', problem: '' });
+      setFormData({ name: '', email: '', phone: '', experienceLevel: '', problem: '' });
     } catch (err) {
       console.error('Form submission error:', err);
       setError('Something went wrong. Please try again.');
@@ -164,6 +165,27 @@ export const WaitlistForm: React.FC = () => {
                       disabled={isSubmitting}
                     />
                   </div>
+                </div>
+
+                {/* Experience Level */}
+                <div>
+                  <label htmlFor="experienceLevel" className="block text-sm font-semibold text-gray-900 mb-2">
+                    Experience with Automation
+                  </label>
+                  <select
+                    id="experienceLevel"
+                    value={formData.experienceLevel}
+                    onChange={(e) => setFormData({ ...formData, experienceLevel: e.target.value })}
+                    className="w-full px-5 py-4 bg-surface border border-gray-200 rounded-xl text-gray-900 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all appearance-none cursor-pointer"
+                    required
+                    disabled={isSubmitting}
+                  >
+                    <option value="" disabled>Select your experience level</option>
+                    <option value="beginner">Beginner - New to automation</option>
+                    <option value="some-experience">Some Experience - Used a few tools</option>
+                    <option value="intermediate">Intermediate - Comfortable with automation</option>
+                    <option value="advanced">Advanced - Built complex workflows</option>
+                  </select>
                 </div>
 
                 {/* Business Problem */}
