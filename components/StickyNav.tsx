@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Wrench, User, UserPlus } from 'lucide-react';
+import { Wrench, User, Clock } from 'lucide-react';
 
 export const StickyNav: React.FC = () => {
     const [activeTab, setActiveTab] = useState('workshop');
@@ -7,7 +7,7 @@ export const StickyNav: React.FC = () => {
     const tabs = [
         { id: 'workshop', label: 'The Workshop', shortLabel: 'Workshop', icon: Wrench },
         { id: 'about', label: 'About', shortLabel: 'About', icon: User },
-        { id: 'waitlist', label: 'Join Waitlist', shortLabel: 'Waitlist', icon: UserPlus }
+        { id: 'waitlist', label: 'Join Waitlist', shortLabel: 'Waitlist', icon: Clock }
     ];
 
     const scrollToSection = (id: string) => {
