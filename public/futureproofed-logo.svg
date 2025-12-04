@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 450 130">
+  <text x="10" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#4A4A4A">Future</text>
+  <text x="10" y="110" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="700" fill="#4A4A4A">Proofed</text>
+  <g transform="translate(370, 20)">
+    <path d="M20 0 L24 14 L40 14 L27 23 L32 38 L20 29 L8 38 L13 23 L0 14 L16 14 Z" fill="#FF7576"/>
+    <path d="M45 8 L47 14 L53 14 L48 18 L50 24 L45 20 L40 24 L42 18 L37 14 L43 14 Z" fill="#FF7576"/>
+    <path d="M50 30 L52 36 L58 36 L53 40 L55 46 L50 42 L45 46 L47 40 L42 36 L48 36 Z" fill="#FF7576"/>
+  </g>
+</svg>
