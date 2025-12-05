@@ -10,20 +10,49 @@ const SAMPLE_MESSAGES = [
   "What's available in Palm Jumeirah?",
 ];
 
-// AI responses based on keywords - professional Dubai real estate agent tone
+// AI responses - contextually aware, professional Dubai real estate agent tone
 const generateAIResponse = (message: string): string => {
   const lowerMessage = message.toLowerCase();
 
-  if (lowerMessage.includes('marina') || lowerMessage.includes('heights')) {
-    return "Thank you for your interest in Marina Heights. To best assist you, may I ask - are you looking for an investment property or a primary residence? I'll prepare details tailored to your specific needs.";
-  } else if (lowerMessage.includes('downtown')) {
-    return "Excellent choice. Downtown Dubai continues to see strong demand. What budget range are you working with? And would this be for immediate occupancy or investment purposes?";
-  } else if (lowerMessage.includes('palm') || lowerMessage.includes('jumeirah')) {
-    return "Palm Jumeirah offers some of our most exclusive properties. Are you interested in apartments or villas? And what timeline are you considering for your purchase?";
-  } else if (lowerMessage.includes('2br') || lowerMessage.includes('bedroom')) {
-    return "Two-bedroom units are in high demand right now. Which area of Dubai are you considering? And what matters most to you - the view, building amenities, or proximity to specific locations?";
+  // Extract specific details from the message
+  const hasBedroom = lowerMessage.match(/(\d)\s*(?:br|bed|bedroom)/i);
+  const bedroomCount = hasBedroom ? hasBedroom[1] : null;
+
+  const areas: Record<string, string> = {
+    'downtown': 'Downtown Dubai',
+    'marina': 'Dubai Marina',
+    'palm': 'Palm Jumeirah',
+    'jumeirah': 'Palm Jumeirah',
+    'heights': 'Marina Heights',
+    'creek': 'Dubai Creek',
+    'hills': 'Dubai Hills',
+    'jbr': 'JBR',
+    'business bay': 'Business Bay',
+  };
+
+  let detectedArea = '';
+  for (const [key, value] of Object.entries(areas)) {
+    if (lowerMessage.includes(key)) {
+      detectedArea = value;
+      break;
+    }
+  }
+
+  // Build contextual response
+  if (detectedArea && bedroomCount) {
+    return `Thank you for your interest in ${bedroomCount}-bedroom properties in ${detectedArea}. We have several excellent options available. May I ask - are you looking for an investment property or a primary residence? And what's your approximate budget range?`;
+  } else if (detectedArea) {
+    return `Thank you for your interest in ${detectedArea}. It's a highly sought-after location. To help you find the perfect property - are you looking for an apartment or villa? And is this for investment or personal use?`;
+  } else if (bedroomCount) {
+    return `${bedroomCount}-bedroom units are very popular right now. Which area of Dubai are you most interested in? I can share some excellent options once I know your preferred location and budget.`;
+  } else if (lowerMessage.includes('invest')) {
+    return `Dubai offers excellent investment opportunities with strong rental yields. What type of property interests you - apartments, villas, or off-plan developments? And do you have a preferred area?`;
+  } else if (lowerMessage.includes('villa') || lowerMessage.includes('house')) {
+    return `We have some beautiful villa options across Dubai. Are you looking in areas like Emirates Hills, Palm Jumeirah, or Dubai Hills? And what size are you considering?`;
+  } else if (lowerMessage.includes('budget') || lowerMessage.includes('price') || lowerMessage.includes('aed') || lowerMessage.includes('cost')) {
+    return `I'd be happy to work within your budget. What range are you comfortable with, and which areas of Dubai interest you most? This will help me find the best matches.`;
   } else {
-    return "Thank you for reaching out. I'd be happy to help you find the right property. What area of Dubai interests you, and are you looking for an investment opportunity or a residence?";
+    return `Thank you for reaching out. I'd be happy to help you find the right property in Dubai. Could you tell me more about what you're looking for - the area, property type, and whether this is for investment or residence?`;
   }
 };
 
