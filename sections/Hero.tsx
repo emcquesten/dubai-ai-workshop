@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { ArrowDown, CheckCircle, Zap, TrendingUp } from 'lucide-react';
 import { BrandStar } from '../components/BrandStar';
@@ -7,10 +7,23 @@ import { BrandStar } from '../components/BrandStar';
 const AI_MESSAGE = "Hi Sara, thanks for your interest in Marina Heights. Quick question: are you looking for investment or a primary residence? I'll send details tailored to your needs.";
 
 export const Hero: React.FC = () => {
+  const shouldReduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   const [displayedText, setDisplayedText] = useState('');
   const [hasTyped, setHasTyped] = useState(false);
   const typingRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Detect mobile on mount
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Disable animations on mobile or if user prefers reduced motion
+  const skipAnimations = shouldReduceMotion || isMobile;
 
   useEffect(() => {
     if (isHovering && !hasTyped) {
@@ -60,9 +73,9 @@ export const Hero: React.FC = () => {
           {/* Left Column - Content */}
           <div className="text-center lg:text-left">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={skipAnimations ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={skipAnimations ? { duration: 0 } : { duration: 0.6, ease: "easeOut" }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 backdrop-blur-sm mb-6 hover:bg-brand-blue/10 transition-colors"
             >
               <span className="text-xs font-bold tracking-wider text-brand-blue uppercase">
@@ -71,9 +84,9 @@ export const Hero: React.FC = () => {
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 30 }}
+              initial={skipAnimations ? false : { opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
+              transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.1, ease: "easeOut" }}
               className="font-sans text-4xl md:text-5xl leading-[1.15] font-bold tracking-tight mb-6 text-gray-900"
             >
               Stop chasing leads that{' '}
@@ -83,27 +96,27 @@ export const Hero: React.FC = () => {
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={skipAnimations ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.2, ease: "easeOut" }}
               className="text-lg md:text-xl text-gray-600 mb-4 font-normal leading-relaxed max-w-lg mx-auto lg:mx-0"
             >
               Learn how to build an AI-powered lead system that replies instantly, qualifies automatically, and finds the buyers who are actually serious.
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={skipAnimations ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+              transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.25, ease: "easeOut" }}
               className="text-sm text-brand-blue font-semibold mb-10 max-w-lg mx-auto lg:mx-0"
             >
               For Dubai real estate agents who want faster follow-up, cleaner pipelines, and more closings.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={skipAnimations ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+              transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.3, ease: "easeOut" }}
               className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start mb-12"
             >
               <Button
@@ -119,9 +132,9 @@ export const Hero: React.FC = () => {
 
           {/* Right Column - Visual Element */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={skipAnimations ? false : { opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            transition={skipAnimations ? { duration: 0 } : { duration: 1, delay: 0.4, ease: "easeOut" }}
             className="relative hidden lg:block"
           >
             {/* Main Card */}
@@ -186,9 +199,9 @@ export const Hero: React.FC = () => {
 
         {/* Quick Stats - Bottom Strip */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={skipAnimations ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.4, ease: "easeOut" }}
+          transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.4, ease: "easeOut" }}
           className="mt-20 pt-10 border-t border-gray-100 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
         >
           <div className="flex flex-col items-center text-center">
