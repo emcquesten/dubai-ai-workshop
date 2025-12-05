@@ -1,10 +1,38 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '../components/ui/Button';
 import { ArrowDown, CheckCircle, Zap, TrendingUp } from 'lucide-react';
 import { BrandStar } from '../components/BrandStar';
 
+const AI_MESSAGE = "Hi Sara, thanks for your interest in Marina Heights. Quick question: are you looking for investment or a primary residence? I'll send details tailored to your needs.";
+
 export const Hero: React.FC = () => {
+  const [isHovering, setIsHovering] = useState(false);
+  const [displayedText, setDisplayedText] = useState('');
+  const [hasTyped, setHasTyped] = useState(false);
+  const typingRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    if (isHovering && !hasTyped) {
+      let currentIndex = 0;
+      setDisplayedText('');
+
+      typingRef.current = setInterval(() => {
+        if (currentIndex < AI_MESSAGE.length) {
+          setDisplayedText(AI_MESSAGE.slice(0, currentIndex + 1));
+          currentIndex++;
+        } else {
+          if (typingRef.current) clearInterval(typingRef.current);
+          setHasTyped(true);
+        }
+      }, 25); // typing speed in ms
+    }
+
+    return () => {
+      if (typingRef.current) clearInterval(typingRef.current);
+    };
+  }, [isHovering, hasTyped]);
+
   const scrollToWaitlist = () => {
     document.getElementById('waitlist')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -123,13 +151,18 @@ export const Hero: React.FC = () => {
                   </div>
 
                   {/* Step 2 - AI Responds */}
-                  <div className="bg-gradient-to-br from-brand-blue to-blue-600 rounded-2xl p-5 text-white shadow-lg transform transition-all hover:scale-[1.02]">
+                  <div
+                    className="bg-gradient-to-br from-brand-blue to-blue-600 rounded-2xl p-5 text-white shadow-lg transform transition-all hover:scale-[1.02] cursor-pointer"
+                    onMouseEnter={() => setIsHovering(true)}
+                    onMouseLeave={() => setIsHovering(false)}
+                  >
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-3 h-3 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]"></div>
                       <span className="text-xs uppercase tracking-widest font-bold">Instant AI Response</span>
                     </div>
-                    <p className="text-sm  leading-relaxed italic">
-                      "Hi Sara, thanks for your interest in Marina Heights. Quick question: are you looking for investment or a primary residence? I'll send details tailored to your needs."
+                    <p className="text-sm leading-relaxed italic min-h-[4.5rem]">
+                      "{hasTyped ? AI_MESSAGE : (displayedText || AI_MESSAGE)}"
+                      {isHovering && !hasTyped && <span className="animate-pulse">|</span>}
                     </p>
                   </div>
 
