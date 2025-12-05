@@ -25,7 +25,9 @@ export const Details: React.FC = () => {
           viewport={{ once: true }}
           className="mb-16 md:mb-24"
         >
-          <span className="text-brand-blue font-semibold tracking-wider uppercase text-sm mb-4 block">{t('details.sectionLabel')}</span>
+          <div className="inline-flex items-center px-4 py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 mb-4">
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-brand-blue">{t('details.sectionLabel')}</span>
+          </div>
           <h2 className="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-gray-900 mb-6">
             {t('details.title')}
           </h2>
@@ -78,7 +80,7 @@ export const Details: React.FC = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="flex gap-6 p-6 rounded-2xl bg-white border border-gray-100 hover:border-brand-blue/30 hover:shadow-lg transition-all backdrop-blur-sm"
+                className="flex gap-6 p-6 rounded-2xl bg-white border border-gray-100 backdrop-blur-sm"
               >
                 <div className="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-brand-blue to-blue-600 flex items-center justify-center text-white shadow-lg">
                   <item.icon size={22} strokeWidth={1.5} />

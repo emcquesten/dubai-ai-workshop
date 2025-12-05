@@ -15,7 +15,9 @@ export const Philosophy: React.FC = () => {
           viewport={{ once: true }}
           className="space-y-16"
         >
-          <h2 className="text-xs font-bold tracking-[0.3em] uppercase text-gray-500">{t('philosophy.sectionLabel')}</h2>
+          <div className="inline-flex items-center px-4 py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 mb-6">
+            <span className="text-xs font-bold tracking-[0.2em] uppercase text-brand-blue">{t('philosophy.sectionLabel')}</span>
+          </div>
 
           <div className="space-y-12">
             <blockquote className="font-sans text-3xl md:text-5xl font-semibold leading-tight text-gray-900">

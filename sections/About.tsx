@@ -44,10 +44,12 @@ export const About: React.FC = () => {
             viewport={{ once: true }}
             className="w-full md:w-1/2 lg:w-6/12 space-y-8"
           >
-            <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-brand-blue">{t('about.sectionLabel')}</h2>
-            <h3 className="font-sans font-bold text-2xl md:text-3xl text-gray-900 leading-tight">
+            <div className="inline-flex items-center px-4 py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 mb-4">
+              <span className="text-xs font-bold tracking-[0.2em] uppercase text-brand-blue">{t('about.sectionLabel')}</span>
+            </div>
+            <h2 className="font-sans font-bold text-2xl md:text-3xl text-gray-900 leading-tight">
               {t('about.title')}
-            </h3>
+            </h2>
 
             <div className="space-y-5 text-gray-600 text-base font-normal leading-relaxed">
               <p>{t('about.bio1')}</p>

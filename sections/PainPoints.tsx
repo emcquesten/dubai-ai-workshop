@@ -71,13 +71,13 @@ export const PainPoints: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              className="group relative p-8 rounded-3xl bg-white border border-gray-100 hover:border-brand-blue/30 transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-brand-blue/5"
+              className="relative p-8 rounded-3xl bg-white border border-gray-100 shadow-sm"
             >
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-brand-blue/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-brand-blue/10 group-hover:border-brand-blue/30">
+                <div className="w-14 h-14 rounded-2xl bg-brand-blue/5 flex items-center justify-center mb-6 border border-brand-blue/10">
                   <point.icon className="text-brand-blue" size={24} strokeWidth={1.5} />
                 </div>
-                <h3 className="font-sans font-semibold text-xl mb-3 text-gray-900 group-hover:text-brand-blue transition-colors">{t(point.titleKey)}</h3>
+                <h3 className="font-sans font-semibold text-xl mb-3 text-gray-900">{t(point.titleKey)}</h3>
                 <p className="font-body text-gray-600 font-normal leading-relaxed">
                   {t(point.descKey)}
                 </p>

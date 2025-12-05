@@ -179,7 +179,7 @@ export const WaitlistForm: React.FC = () => {
         >
           <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-brand-coral/10 border border-brand-coral/20 mb-6">
             <span className="w-2 h-2 rounded-full bg-brand-coral animate-pulse flex-shrink-0"></span>
-            <span className="text-sm font-bold text-brand-coral uppercase tracking-wide text-center">{t('waitlist.badge')}</span>
+            <span className="text-xs font-bold text-brand-coral uppercase tracking-[0.2em]">{t('waitlist.badge')}</span>
           </div>
           <h2 className="font-sans font-bold text-3xl md:text-4xl text-gray-900 mb-6">
             {t('waitlist.title')}

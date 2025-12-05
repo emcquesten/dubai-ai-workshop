@@ -168,13 +168,13 @@ export const Benefits: React.FC = () => {
                 {benefitKeys.map((key, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-4 group cursor-default"
+                    className="flex items-center gap-4 cursor-default"
                     style={{ opacity: 0 }}
                   >
-                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-white/40 transition-colors">
+                    <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                       <CheckCircle2 size={14} className="text-white" />
                     </div>
-                    <span className="text-lg text-white font-normal group-hover:font-medium transition-all">
+                    <span className="text-lg text-white font-normal">
                       {t(key)}
                     </span>
                   </div>
@@ -194,7 +194,7 @@ export const Benefits: React.FC = () => {
 
                 <div className="relative z-10 space-y-6 sm:space-y-8">
                   {/* Card 1 */}
-                  <div className="bg-white/90 backdrop-blur-md border border-white/40 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4 transform transition-transform hover:scale-[1.02] duration-300">
+                  <div className="bg-white/90 backdrop-blur-md border border-white/40 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4">
                     <div className="flex items-center gap-3 mb-3 opacity-60">
                       <div className="w-2 h-2 rounded-full bg-gray-400"></div>
                       <div className="text-[10px] uppercase tracking-widest text-gray-600 font-semibold">{t('hero.newLeadDetected')}</div>
@@ -208,7 +208,7 @@ export const Benefits: React.FC = () => {
                   </div>
 
                   {/* Card 2 */}
-                  <div className="bg-gradient-to-br from-white via-white to-blue-50 backdrop-blur-md border border-white/60 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4 ml-auto shadow-2xl transform transition-transform hover:scale-[1.02] duration-300">
+                  <div className="bg-gradient-to-br from-white via-white to-blue-50 backdrop-blur-md border border-white/60 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4 ml-auto shadow-2xl">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
                       <div className="text-[10px] uppercase tracking-widest text-brand-blue font-semibold">{t('hero.aiAgentReply')}</div>
