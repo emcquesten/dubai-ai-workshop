@@ -325,30 +325,40 @@ export const Hero: React.FC = () => {
           initial={skipAnimations ? false : { opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.4, ease: "easeOut" }}
-          className="mt-20 pt-10 border-t border-gray-100 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          className="mt-20 pt-10 border-t border-gray-100 max-w-4xl mx-auto"
         >
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 mb-2">
-              <CheckCircle className="text-green-500" size={24} />
-              <span className="text-3xl font-bold text-gray-900">24/7</span>
-            </div>
-            <p className="text-base text-gray-600 font-medium">Respond instantly, even while you sleep</p>
+          {/* Context headline */}
+          <div className="text-center mb-10">
+            <p className="text-lg text-gray-600 font-medium">
+              In this workshop, you'll build a system that can:
+            </p>
           </div>
 
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 mb-2">
-              <Zap className="text-brand-coral" size={24} />
-              <span className="text-3xl font-bold text-gray-900">5+ Hrs</span>
+          {/* Stats grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="flex flex-col items-center text-center">
+              <div className="flex items-center gap-2 mb-2">
+                <CheckCircle className="text-green-500" size={24} />
+                <span className="text-3xl font-bold text-gray-900">24/7</span>
+              </div>
+              <p className="text-base text-gray-600 font-medium">Respond instantly, even while you sleep</p>
             </div>
-            <p className="text-base text-gray-600 font-medium">Saved every day on manual texting</p>
-          </div>
 
-          <div className="flex flex-col items-center text-center">
-            <div className="flex items-center gap-2 mb-2">
-              <TrendingUp className="text-brand-blue" size={24} />
-              <span className="text-3xl font-bold text-gray-900">2x</span>
+            <div className="flex flex-col items-center text-center">
+              <div className="flex items-center gap-2 mb-2">
+                <Zap className="text-brand-coral" size={24} />
+                <span className="text-3xl font-bold text-gray-900">5+ Hrs</span>
+              </div>
+              <p className="text-base text-gray-600 font-medium">Saved every day on manual texting</p>
             </div>
-            <p className="text-base text-gray-600 font-medium">Increase conversions by fixing follow-up</p>
+
+            <div className="flex flex-col items-center text-center">
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="text-brand-blue" size={24} />
+                <span className="text-3xl font-bold text-gray-900">2x</span>
+              </div>
+              <p className="text-base text-gray-600 font-medium">Increase conversions by fixing follow-up</p>
+            </div>
           </div>
         </motion.div>
       </div>
