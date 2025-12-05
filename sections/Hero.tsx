@@ -58,9 +58,18 @@ export const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-              className="text-lg md:text-xl text-gray-600 mb-10 font-normal leading-relaxed max-w-lg mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-gray-600 mb-4 font-normal leading-relaxed max-w-lg mx-auto lg:mx-0"
             >
-              Learn to build an AI system that qualifies your leads automatically, so you only spend time with buyers who are ready to move.
+              Learn how to build an AI-powered lead system that replies instantly, qualifies automatically, and finds the buyers who are actually serious.
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
+              className="text-sm text-brand-blue font-semibold mb-10 max-w-lg mx-auto lg:mx-0"
+            >
+              For Dubai real estate agents who want faster follow-up, cleaner pipelines, and more closings.
             </motion.p>
 
             <motion.div
@@ -152,25 +161,25 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center gap-2 mb-2">
               <CheckCircle className="text-green-500" size={24} />
-              <span className="text-3xl font-bold text-gray-900">60%</span>
+              <span className="text-3xl font-bold text-gray-900">24/7</span>
             </div>
-            <p className="text-base text-gray-600 font-medium">Less Time on Admin</p>
+            <p className="text-base text-gray-600 font-medium">Respond instantly, even while you sleep</p>
           </div>
 
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center gap-2 mb-2">
               <Zap className="text-brand-coral" size={24} />
-              <span className="text-3xl font-bold text-gray-900">5 Hours</span>
+              <span className="text-3xl font-bold text-gray-900">5+ Hrs</span>
             </div>
-            <p className="text-base text-gray-600 font-medium">Hands-On Training</p>
+            <p className="text-base text-gray-600 font-medium">Saved every day on manual texting</p>
           </div>
 
           <div className="flex flex-col items-center text-center">
             <div className="flex items-center gap-2 mb-2">
               <TrendingUp className="text-brand-blue" size={24} />
-              <span className="text-3xl font-bold text-gray-900">20%</span>
+              <span className="text-3xl font-bold text-gray-900">2x</span>
             </div>
-            <p className="text-base text-gray-600 font-medium">Better Conversions</p>
+            <p className="text-base text-gray-600 font-medium">Increase conversions by fixing follow-up</p>
           </div>
         </motion.div>
       </div>
