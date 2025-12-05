@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { Wrench, User, Clock } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const StickyNav: React.FC = () => {
+    const { t } = useTranslation();
     const [activeTab, setActiveTab] = useState('workshop');
 
     const tabs = [
-        { id: 'workshop', label: 'The Workshop', shortLabel: 'Workshop', icon: Wrench },
-        { id: 'about', label: 'About', shortLabel: 'About', icon: User },
-        { id: 'waitlist', label: 'Join Waitlist', shortLabel: 'Waitlist', icon: Clock }
+        { id: 'workshop', labelKey: 'nav.theWorkshop', shortLabelKey: 'nav.workshop', icon: Wrench },
+        { id: 'about', labelKey: 'nav.about', shortLabelKey: 'nav.about', icon: User },
+        { id: 'waitlist', labelKey: 'nav.joinWaitlist', shortLabelKey: 'nav.joinWaitlist', icon: Clock }
     ];
 
     const scrollToSection = (id: string) => {
@@ -42,8 +44,8 @@ export const StickyNav: React.FC = () => {
                         >
                             <Icon size={18} strokeWidth={2} className="flex-shrink-0" />
                             <span className="text-xs sm:text-sm whitespace-nowrap">
-                                <span className="sm:hidden">{tab.shortLabel}</span>
-                                <span className="hidden sm:inline">{tab.label}</span>
+                                <span className="sm:hidden">{t(tab.shortLabelKey)}</span>
+                                <span className="hidden sm:inline">{t(tab.labelKey)}</span>
                             </span>
                         </button>
                     );

@@ -1,7 +1,10 @@
 import React from 'react';
 import { FutureProofedLogo } from '../components/FutureProofedLogo';
+import { useTranslation } from 'react-i18next';
 
 export const Footer: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-surface border-t border-gray-100 pt-12 pb-28">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -13,13 +16,13 @@ export const Footer: React.FC = () => {
 
           {/* Links - Center */}
           <div className="flex gap-8 text-sm text-gray-600 md:mx-auto">
-            <a href="/privacy" className="hover:text-brand-blue transition-colors">Privacy</a>
-            <a href="/terms" className="hover:text-brand-blue transition-colors">Terms</a>
+            <a href="/privacy" className="hover:text-brand-blue transition-colors">{t('footer.privacy')}</a>
+            <a href="/terms" className="hover:text-brand-blue transition-colors">{t('footer.terms')}</a>
           </div>
 
           {/* Copyright - Right */}
           <p className="text-sm text-gray-500 md:absolute md:right-0">
-            © {new Date().getFullYear()} FutureProofed. All rights reserved.
+            {t('footer.copyright', { year: new Date().getFullYear() })}
           </p>
         </div>
       </div>

@@ -2,41 +2,44 @@ import React from 'react';
 import { Section } from '../components/ui/Section';
 import { Mail, Clock, Users, Database, Zap, Search } from 'lucide-react';
 import { motion } from 'framer-motion';
-
-const points = [
-  {
-    icon: Mail,
-    title: "Too many leads, not enough buyers",
-    description: "You already know the drill. Most of the people reaching out aren't serious. Fake numbers, tire-kickers, people just browsing. It's exhausting."
-  },
-  {
-    icon: Search,
-    title: "Qualifying takes forever",
-    description: "You spend hours every evening trying to figure out who's real and who's not. By the time you get to the good ones, you're already burnt out."
-  },
-  {
-    icon: Clock,
-    title: "People expect instant replies",
-    description: "Someone reaches out at 11pm and by morning they've already talked to three other agents. Speed matters, but you can't be on 24/7."
-  },
-  {
-    icon: Users,
-    title: "Personal touch doesn't scale",
-    description: "Every buyer expects you to remember their name, their preferences, their timeline. That's hard when you're juggling 50 conversations a day."
-  },
-  {
-    icon: Database,
-    title: "Nobody taught you this stuff",
-    description: "Your brokerage showed you how to close deals, not how to set up automations or use AI. So you're figuring it out as you go."
-  },
-  {
-    icon: Zap,
-    title: "Other agents are moving faster",
-    description: "Some of your competitors are already using these tools. They're responding quicker, qualifying faster, and closing more. You can feel it."
-  }
-];
+import { useTranslation } from 'react-i18next';
 
 export const PainPoints: React.FC = () => {
+  const { t } = useTranslation();
+
+  const points = [
+    {
+      icon: Mail,
+      titleKey: "painPoints.point1Title",
+      descKey: "painPoints.point1Desc"
+    },
+    {
+      icon: Search,
+      titleKey: "painPoints.point2Title",
+      descKey: "painPoints.point2Desc"
+    },
+    {
+      icon: Clock,
+      titleKey: "painPoints.point3Title",
+      descKey: "painPoints.point3Desc"
+    },
+    {
+      icon: Users,
+      titleKey: "painPoints.point4Title",
+      descKey: "painPoints.point4Desc"
+    },
+    {
+      icon: Database,
+      titleKey: "painPoints.point5Title",
+      descKey: "painPoints.point5Desc"
+    },
+    {
+      icon: Zap,
+      titleKey: "painPoints.point6Title",
+      descKey: "painPoints.point6Desc"
+    }
+  ];
+
   return (
     <Section id="pain-points" className="bg-white relative">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -47,7 +50,7 @@ export const PainPoints: React.FC = () => {
             viewport={{ once: true }}
             className="font-sans font-semibold text-3xl md:text-4xl mb-6 text-gray-900 tracking-tight"
           >
-            You can close. Your systems can't keep up.
+            {t('painPoints.title')}
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -56,7 +59,7 @@ export const PainPoints: React.FC = () => {
             transition={{ delay: 0.1 }}
             className="text-gray-600 text-lg font-normal"
           >
-            You've got the skills. You've closed the deals. But the lead volume has outpaced what any agent can handle manually. These are the problems everyone's dealing with.
+            {t('painPoints.subtitle')}
           </motion.p>
         </div>
 
@@ -74,9 +77,9 @@ export const PainPoints: React.FC = () => {
                 <div className="w-14 h-14 rounded-2xl bg-brand-blue/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-brand-blue/10 group-hover:border-brand-blue/30">
                   <point.icon className="text-brand-blue" size={24} strokeWidth={1.5} />
                 </div>
-                <h3 className="font-sans font-semibold text-xl mb-3 text-gray-900 group-hover:text-brand-blue transition-colors">{point.title}</h3>
+                <h3 className="font-sans font-semibold text-xl mb-3 text-gray-900 group-hover:text-brand-blue transition-colors">{t(point.titleKey)}</h3>
                 <p className="font-body text-gray-600 font-normal leading-relaxed">
-                  {point.description}
+                  {t(point.descKey)}
                 </p>
               </div>
             </motion.div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { MagneticButton } from '../components/ui/MagneticButton';
 import { ArrowDown, CheckCircle, Zap, TrendingUp, Send, Sparkles } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 // Sample lead messages for the interactive demo
 const SAMPLE_MESSAGES = [
@@ -60,6 +61,7 @@ export const Hero: React.FC = () => {
   const shouldReduceMotion = useReducedMotion();
   const [isMobile, setIsMobile] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   // Interactive AI Demo state
   const [userMessage, setUserMessage] = useState('');
@@ -177,7 +179,7 @@ export const Hero: React.FC = () => {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-blue/20 bg-brand-blue/5 backdrop-blur-sm mb-6 hover:bg-brand-blue/10 transition-colors"
             >
               <span className="text-xs font-bold tracking-wider text-brand-blue uppercase">
-                AI Workshop for Dubai Real Estate Agents
+                {t('hero.badge')}
               </span>
             </motion.div>
 
@@ -187,9 +189,9 @@ export const Hero: React.FC = () => {
               transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.1, ease: "easeOut" }}
               className="font-sans text-4xl md:text-5xl leading-[1.15] font-bold tracking-tight mb-6 text-gray-900"
             >
-              Stop chasing leads that{' '}
+              {t('hero.headline')}{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-blue via-blue-600 to-brand-blue">
-                never respond.
+                {t('hero.headlineHighlight')}
               </span>
             </motion.h1>
 
@@ -199,7 +201,7 @@ export const Hero: React.FC = () => {
               transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.2, ease: "easeOut" }}
               className="text-lg md:text-xl text-gray-600 mb-4 font-normal leading-relaxed max-w-lg mx-auto lg:mx-0"
             >
-              Learn how to build an AI-powered lead system that replies instantly, qualifies automatically, and finds the buyers who are actually serious.
+              {t('hero.description')}
             </motion.p>
 
             <motion.div
@@ -213,7 +215,7 @@ export const Hero: React.FC = () => {
                 magneticStrength={0.1}
                 className="md:text-lg px-10 py-5 bg-brand-blue text-white hover:bg-blue-700 shadow-md shadow-brand-blue/20 hover:shadow-lg hover:shadow-brand-blue/25 transition-all rounded-lg font-medium inline-flex items-center justify-center"
               >
-                Get on the Waitlist
+                {t('common.getOnWaitlist')}
               </MagneticButton>
             </motion.div>
           </div>
@@ -236,12 +238,12 @@ export const Hero: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-brand-coral" />
-                    <span className="text-sm font-bold text-gray-900">See it in action</span>
-                    <span className="text-xs text-gray-400 font-normal">· Demo</span>
+                    <span className="text-sm font-bold text-gray-900">{t('hero.demoTitle')}</span>
+                    <span className="text-xs text-gray-400 font-normal">· {t('hero.demoLabel')}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                    <span className="text-xs text-gray-500">AI Active</span>
+                    <span className="text-xs text-gray-500">{t('hero.aiActive')}</span>
                   </div>
                 </div>
 
@@ -251,7 +253,7 @@ export const Hero: React.FC = () => {
                   <div className="bg-gray-50 rounded-2xl p-4 border-2 border-gray-100">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                      <span className="text-xs uppercase tracking-widest text-gray-500 font-bold">Your Lead Message</span>
+                      <span className="text-xs uppercase tracking-widest text-gray-500 font-bold">{t('hero.demoInputLabel')}</span>
                     </div>
 
                     {!showDemo ? (
@@ -279,7 +281,7 @@ export const Hero: React.FC = () => {
                           className="text-xs text-brand-blue font-medium flex items-center gap-1"
                         >
                           <span className="inline-block w-1.5 h-1.5 bg-brand-coral rounded-full"></span>
-                          Type a message to see AI in action
+                          {t('hero.demoInputHint')}
                         </motion.div>
                       </form>
                     ) : (
@@ -299,7 +301,7 @@ export const Hero: React.FC = () => {
                     <div className="flex items-center gap-3 mb-3">
                       <div className={`w-3 h-3 rounded-full ${showDemo ? 'bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.8)]' : 'bg-white/50'}`}></div>
                       <span className="text-xs uppercase tracking-widest font-bold">
-                        {isTyping ? 'AI is typing...' : 'Instant AI Response'}
+                        {isTyping ? t('hero.demoTyping') : t('hero.demoResponseLabel')}
                       </span>
                     </div>
                     <p className="text-sm leading-relaxed min-h-[6rem]">
@@ -309,7 +311,7 @@ export const Hero: React.FC = () => {
                           {isTyping && <span className="animate-pulse">|</span>}
                         </>
                       ) : (
-                        <span className="text-white/70 italic">Watch the AI respond to your message...</span>
+                        <span className="text-white/70 italic">{t('hero.demoResponsePlaceholder')}</span>
                       )}
                     </p>
                   </div>
@@ -322,7 +324,7 @@ export const Hero: React.FC = () => {
                       onClick={handleTryAgain}
                       className="w-full py-2 text-sm text-brand-blue font-medium hover:text-blue-700 transition-colors flex items-center justify-center gap-2"
                     >
-                      <span>↻</span> Try another message
+                      <span>↻</span> {t('hero.demoTryAnother')}
                     </motion.button>
                   )}
 
@@ -331,7 +333,7 @@ export const Hero: React.FC = () => {
                     <div className="flex items-center gap-3">
                       <CheckCircle className="text-green-600" size={20} />
                       <span className="text-sm font-bold text-gray-900">
-                        {showDemo && !isTyping ? 'Lead qualified & ready for follow-up!' : 'Hot Lead Ready for Call - AED 2.8M Budget'}
+                        {showDemo && !isTyping ? t('hero.demoResult') : t('hero.demoResultDefault')}
                       </span>
                     </div>
                   </div>
@@ -351,7 +353,7 @@ export const Hero: React.FC = () => {
           {/* Context headline */}
           <div className="text-center mb-10">
             <p className="text-lg text-gray-600 font-medium">
-              In this workshop, you'll build a system that can:
+              {t('hero.statsIntro')}
             </p>
           </div>
 
@@ -360,30 +362,30 @@ export const Hero: React.FC = () => {
             <div className="flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle className="text-green-500" size={24} />
-                <span className="text-3xl font-bold text-gray-900">24/7</span>
+                <span className="text-3xl font-bold text-gray-900">{t('hero.stat1Value')}</span>
               </div>
-              <p className="text-base text-gray-600 font-medium">Respond instantly, even while you sleep</p>
+              <p className="text-base text-gray-600 font-medium">{t('hero.stat1Label')}</p>
             </div>
 
             <div className="flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-2">
                 <Zap className="text-brand-coral" size={24} />
-                <span className="text-3xl font-bold text-gray-900">5+ Hrs</span>
+                <span className="text-3xl font-bold text-gray-900">{t('hero.stat2Value')}</span>
               </div>
-              <p className="text-base text-gray-600 font-medium">Saved every day on manual texting</p>
+              <p className="text-base text-gray-600 font-medium">{t('hero.stat2Label')}</p>
             </div>
 
             <div className="flex flex-col items-center text-center">
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="text-brand-blue" size={24} />
-                <span className="text-3xl font-bold text-gray-900">2x</span>
+                <span className="text-3xl font-bold text-gray-900">{t('hero.stat3Value')}</span>
               </div>
-              <p className="text-base text-gray-600 font-medium">Increase conversions by fixing follow-up</p>
+              <p className="text-base text-gray-600 font-medium">{t('hero.stat3Label')}</p>
             </div>
           </div>
         </motion.div>
       </div>
 
-    </section >
+    </section>
   );
 };

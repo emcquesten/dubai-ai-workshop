@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from './ui/Button';
 import { FutureProofedLogo } from './FutureProofedLogo';
+import { LanguageSwitcher } from './LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
 
 interface NavbarProps {
   hideNavLinks?: boolean;
@@ -8,6 +10,7 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ hideNavLinks = false }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,21 +70,24 @@ export const Navbar: React.FC<NavbarProps> = ({ hideNavLinks = false }) => {
           {/* Navigation - Center (Desktop only) */}
           {!hideNavLinks && (
             <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-              <a href="/#pain-points" onClick={(e) => handleNavClick(e, 'pain-points')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">Challenges</a>
-              <a href="/#benefits" onClick={(e) => handleNavClick(e, 'benefits')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">Benefits</a>
-              <a href="/#details" onClick={(e) => handleNavClick(e, 'details')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">Workshop</a>
-              <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">About</a>
+              <a href="/#pain-points" onClick={(e) => handleNavClick(e, 'pain-points')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.challenges')}</a>
+              <a href="/#benefits" onClick={(e) => handleNavClick(e, 'benefits')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.benefits')}</a>
+              <a href="/#details" onClick={(e) => handleNavClick(e, 'details')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.workshop')}</a>
+              <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.about')}</a>
             </div>
           )}
 
-          {/* CTA - Right */}
-          <Button
-            onClick={handleWaitlistClick}
-            variant="outline"
-            className="!bg-brand-blue !text-white hover:!bg-blue-700 !border-brand-blue transition-colors text-base px-6 py-2.5 !rounded-lg"
-          >
-            Join Waitlist
-          </Button>
+          {/* Right side - Language Switcher + CTA */}
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <Button
+              onClick={handleWaitlistClick}
+              variant="outline"
+              className="!bg-brand-blue !text-white hover:!bg-blue-700 !border-brand-blue transition-colors text-base px-6 py-2.5 !rounded-lg"
+            >
+              {t('nav.joinWaitlist')}
+            </Button>
+          </div>
         </div>
       </div>
     </nav>

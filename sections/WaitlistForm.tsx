@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Section } from '../components/ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, AlertCircle, Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 // Common email domain typos and their corrections
 const DOMAIN_TYPOS: Record<string, string> = {
@@ -85,6 +86,7 @@ const validateEmail = (email: string): EmailValidation => {
 };
 
 export const WaitlistForm: React.FC = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -177,13 +179,13 @@ export const WaitlistForm: React.FC = () => {
         >
           <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-brand-coral/10 border border-brand-coral/20 mb-6">
             <span className="w-2 h-2 rounded-full bg-brand-coral animate-pulse flex-shrink-0"></span>
-            <span className="text-sm font-bold text-brand-coral uppercase tracking-wide text-center">Limited to 10 seats to keep it hands-on</span>
+            <span className="text-sm font-bold text-brand-coral uppercase tracking-wide text-center">{t('waitlist.badge')}</span>
           </div>
           <h2 className="font-sans font-bold text-3xl md:text-4xl text-gray-900 mb-6">
-            Join the waitlist.
+            {t('waitlist.title')}
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto font-normal leading-relaxed">
-            Dates are being finalized. Sign up below and you'll be the first to know when registration opens.
+            {t('waitlist.subtitle')}
           </p>
         </motion.div>
 
@@ -206,10 +208,10 @@ export const WaitlistForm: React.FC = () => {
                   <CheckCircle className="w-10 h-10 text-green-600" />
                 </div>
                 <h3 className="font-sans font-bold text-2xl md:text-3xl text-gray-900 mb-4">
-                  You're on the list!
+                  {t('waitlist.successTitle')}
                 </h3>
                 <p className="text-gray-600 text-lg max-w-md mx-auto">
-                  Thanks for signing up. I'll be in touch soon with workshop dates and next steps.
+                  {t('waitlist.successMessage')}
                 </p>
               </motion.div>
             ) : (
@@ -224,7 +226,7 @@ export const WaitlistForm: React.FC = () => {
                 {/* Name */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Your Name
+                    {t('waitlist.nameLabel')}
                   </label>
                   <input
                     type="text"
@@ -232,7 +234,7 @@ export const WaitlistForm: React.FC = () => {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-5 py-4 bg-surface border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
-                    placeholder="Ahmed Al-Rashid"
+                    placeholder={t('waitlist.namePlaceholder')}
                     required
                     disabled={isSubmitting}
                   />
@@ -241,7 +243,7 @@ export const WaitlistForm: React.FC = () => {
                 {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Email Address
+                    {t('waitlist.emailLabel')}
                   </label>
                   <div className="relative">
                     <input
@@ -251,12 +253,12 @@ export const WaitlistForm: React.FC = () => {
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       onBlur={() => setEmailTouched(true)}
                       className={`w-full px-5 py-4 pr-12 bg-surface border rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none transition-all ${emailTouched && formData.email
-                          ? emailValidation.isValid
-                            ? 'border-green-500 focus:border-green-500 focus:ring-2 focus:ring-green-500/20'
-                            : emailValidation.error || emailValidation.suggestion
-                              ? 'border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/20'
-                              : 'border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
-                          : 'border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
+                        ? emailValidation.isValid
+                          ? 'border-green-500 focus:border-green-500 focus:ring-2 focus:ring-green-500/20'
+                          : emailValidation.error || emailValidation.suggestion
+                            ? 'border-red-400 focus:border-red-400 focus:ring-2 focus:ring-red-400/20'
+                            : 'border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
+                        : 'border-gray-200 focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20'
                         }`}
                       placeholder="ahmed@gmail.com"
                       required
@@ -282,7 +284,7 @@ export const WaitlistForm: React.FC = () => {
                   )}
                   {emailTouched && emailValidation.suggestion && (
                     <p className="mt-2 text-sm text-amber-600 flex items-center gap-1">
-                      Did you mean{' '}
+                      {t('waitlist.didYouMean')}{' '}
                       <button
                         type="button"
                         onClick={() => {
@@ -301,7 +303,7 @@ export const WaitlistForm: React.FC = () => {
                 {/* Phone */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Phone Number <span className="text-gray-400 font-normal">(Optional)</span>
+                    {t('waitlist.phoneLabel')} <span className="text-gray-400 font-normal">{t('waitlist.phoneOptional')}</span>
                   </label>
                   <div className="relative">
                     <span className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600 font-medium">+971</span>
@@ -320,7 +322,7 @@ export const WaitlistForm: React.FC = () => {
                 {/* Experience Level */}
                 <div>
                   <label htmlFor="experienceLevel" className="block text-sm font-semibold text-gray-900 mb-2">
-                    Experience with Automation
+                    {t('waitlist.experienceLabel')}
                   </label>
                   <select
                     id="experienceLevel"
@@ -330,18 +332,18 @@ export const WaitlistForm: React.FC = () => {
                     required
                     disabled={isSubmitting}
                   >
-                    <option value="" disabled>Select your experience level</option>
-                    <option value="beginner">Beginner - New to automation</option>
-                    <option value="some-experience">Some Experience - Used a few tools</option>
-                    <option value="intermediate">Intermediate - Comfortable with automation</option>
-                    <option value="advanced">Advanced - Built complex workflows</option>
+                    <option value="" disabled>{t('waitlist.experiencePlaceholder')}</option>
+                    <option value="beginner">{t('waitlist.experienceBeginner')}</option>
+                    <option value="some-experience">{t('waitlist.experienceSome')}</option>
+                    <option value="intermediate">{t('waitlist.experienceIntermediate')}</option>
+                    <option value="advanced">{t('waitlist.experienceAdvanced')}</option>
                   </select>
                 </div>
 
                 {/* Business Problem */}
                 <div>
                   <label htmlFor="problem" className="block text-sm font-semibold text-gray-900 mb-2">
-                    What's taking up most of your time right now?
+                    {t('waitlist.problemLabel')}
                   </label>
                   <textarea
                     id="problem"
@@ -349,7 +351,7 @@ export const WaitlistForm: React.FC = () => {
                     onChange={(e) => setFormData({ ...formData, problem: e.target.value })}
                     rows={4}
                     className="w-full px-5 py-4 bg-surface border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all resize-none"
-                    placeholder="e.g., I spend hours every day sorting through leads..."
+                    placeholder={t('waitlist.problemPlaceholder')}
                     required
                     disabled={isSubmitting}
                   />
@@ -362,17 +364,16 @@ export const WaitlistForm: React.FC = () => {
                   </div>
                 )}
 
-                {/* Submit Button */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
                   className="w-full py-5 px-8 font-sans font-bold text-base tracking-wide bg-brand-blue text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg shadow-brand-blue/25 hover:shadow-xl hover:shadow-brand-blue/30 hover:scale-[1.02] transform duration-200 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  {isSubmitting ? 'Submitting...' : 'Get on the Waitlist'}
+                  {isSubmitting ? t('waitlist.submitting') : t('waitlist.submitButton')}
                 </button>
 
                 <p className="text-center text-sm text-gray-500 mt-6">
-                  I'll email you when dates are set. No spam, just workshop updates.
+                  {t('waitlist.footerNote')}
                 </p>
               </motion.form>
             )}

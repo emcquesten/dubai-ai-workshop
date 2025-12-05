@@ -1,8 +1,11 @@
 import React from 'react';
 import { Section } from '../components/ui/Section';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export const About: React.FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Section id="about" className="bg-surface relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -26,8 +29,8 @@ export const About: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
 
               <div className="absolute bottom-6 left-6 z-20">
-                <p className="text-white font-bold text-xl">Eric McQuesten</p>
-                <p className="text-gray-200 text-sm">Founder, FutureProofed</p>
+                <p className="text-white font-bold text-xl">{t('about.name')}</p>
+                <p className="text-gray-200 text-sm">{t('about.role')}</p>
               </div>
             </div>
             {/* Background accent */}
@@ -41,24 +44,16 @@ export const About: React.FC = () => {
             viewport={{ once: true }}
             className="w-full md:w-1/2 lg:w-6/12 space-y-8"
           >
-            <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-brand-blue">Who's running this?</h2>
+            <h2 className="text-sm font-bold tracking-[0.3em] uppercase text-brand-blue">{t('about.sectionLabel')}</h2>
             <h3 className="font-sans font-bold text-2xl md:text-3xl text-gray-900 leading-tight">
-              Hey, I'm Eric.
+              {t('about.title')}
             </h3>
 
             <div className="space-y-5 text-gray-600 text-base font-normal leading-relaxed">
-              <p>
-                I've spent the last few years building AI and automation systems for businesses: sales teams, operations, customer service. I've seen what works and what doesn't.
-              </p>
-              <p>
-                When I started paying attention to Dubai real estate, I kept seeing the same thing: really talented agents drowning in admin work, barely keeping up with leads, and using tools their brokerages never taught them how to use properly.
-              </p>
-              <p>
-                Most agents I've talked to tell me they want to automate but don't know where to start. That's why I put this workshop together to actually show you how, step by step, in a way that makes sense.
-              </p>
-              <p>
-                No fluff. No theory. You'll leave with something that works.
-              </p>
+              <p>{t('about.bio1')}</p>
+              <p>{t('about.bio2')}</p>
+              <p>{t('about.bio3')}</p>
+              <p>{t('about.bio4')}</p>
             </div>
           </motion.div>
 

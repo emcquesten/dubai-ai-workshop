@@ -3,6 +3,7 @@ import { Section } from '../components/ui/Section';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,17 @@ const benefits = [
 ];
 
 export const Benefits: React.FC = () => {
+  const { t } = useTranslation();
+
+  const benefitKeys = [
+    'benefits.benefit1',
+    'benefits.benefit2',
+    'benefits.benefit3',
+    'benefits.benefit4',
+    'benefits.benefit5',
+    'benefits.benefit6'
+  ];
+
   const sectionRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -145,15 +157,15 @@ export const Benefits: React.FC = () => {
             <div className="flex-1 space-y-10">
               <div ref={headingRef} style={{ opacity: 0 }}>
                 <h2 className="font-sans font-bold text-3xl md:text-4xl lg:text-5xl text-white mb-6 leading-tight">
-                  What if you could just... focus on the good ones?
+                  {t('benefits.title')}
                 </h2>
                 <p className="text-lg text-blue-100 font-normal max-w-md leading-relaxed">
-                  Imagine waking up to a list of people who are actually ready to buy. Budget confirmed. Timeline known. No more guessing. That's what we're building here.
+                  {t('benefits.subtitle')}
                 </p>
               </div>
 
               <div ref={benefitsListRef} className="space-y-5">
-                {benefits.map((benefit, index) => (
+                {benefitKeys.map((key, index) => (
                   <div
                     key={index}
                     className="flex items-center gap-4 group cursor-default"
@@ -163,7 +175,7 @@ export const Benefits: React.FC = () => {
                       <CheckCircle2 size={14} className="text-white" />
                     </div>
                     <span className="text-lg text-white font-normal group-hover:font-medium transition-all">
-                      {benefit}
+                      {t(key)}
                     </span>
                   </div>
                 ))}
@@ -185,7 +197,7 @@ export const Benefits: React.FC = () => {
                   <div className="bg-white/90 backdrop-blur-md border border-white/40 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4 transform transition-transform hover:scale-[1.02] duration-300">
                     <div className="flex items-center gap-3 mb-3 opacity-60">
                       <div className="w-2 h-2 rounded-full bg-gray-400"></div>
-                      <div className="text-[10px] uppercase tracking-widest text-gray-600 font-semibold">New Lead Detected</div>
+                      <div className="text-[10px] uppercase tracking-widest text-gray-600 font-semibold">{t('hero.newLeadDetected')}</div>
                     </div>
                     <div className="h-2 w-full bg-gray-200 rounded mb-2"></div>
                     <div className="h-2 w-1/2 bg-gray-200 rounded"></div>
@@ -199,10 +211,10 @@ export const Benefits: React.FC = () => {
                   <div className="bg-gradient-to-br from-white via-white to-blue-50 backdrop-blur-md border border-white/60 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4 ml-auto shadow-2xl transform transition-transform hover:scale-[1.02] duration-300">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-                      <div className="text-[10px] uppercase tracking-widest text-brand-blue font-semibold">AI Agent Reply</div>
+                      <div className="text-[10px] uppercase tracking-widest text-brand-blue font-semibold">{t('hero.aiAgentReply')}</div>
                     </div>
                     <div className="text-sm text-gray-700 font-normal italic leading-relaxed">
-                      "Hi Ahmed, I saw you're interested in the Downtown villa. Are you looking for investment or personal use?"
+                      {t('hero.staticDemoMessage')}
                     </div>
                   </div>
                 </div>
