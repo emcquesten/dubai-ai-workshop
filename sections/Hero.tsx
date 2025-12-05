@@ -236,7 +236,8 @@ export const Hero: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-brand-coral" />
-                    <span className="text-sm font-bold text-gray-900">Try it yourself</span>
+                    <span className="text-sm font-bold text-gray-900">See it in action</span>
+                    <span className="text-xs text-gray-400 font-normal">· Demo</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
