@@ -173,15 +173,6 @@ export const Hero: React.FC = () => {
               Learn how to build an AI-powered lead system that replies instantly, qualifies automatically, and finds the buyers who are actually serious.
             </motion.p>
 
-            <motion.p
-              initial={skipAnimations ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={skipAnimations ? { duration: 0 } : { duration: 0.7, delay: 0.25, ease: "easeOut" }}
-              className="text-sm text-brand-blue font-semibold mb-10 max-w-lg mx-auto lg:mx-0"
-            >
-              For Dubai real estate agents who want faster follow-up, cleaner pipelines, and more closings.
-            </motion.p>
-
             <motion.div
               initial={skipAnimations ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
