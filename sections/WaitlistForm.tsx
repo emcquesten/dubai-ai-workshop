@@ -72,9 +72,9 @@ export const WaitlistForm: React.FC = () => {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-coral/10 border border-brand-coral/20 mb-6">
-            <span className="w-2 h-2 rounded-full bg-brand-coral animate-pulse"></span>
-            <span className="text-sm font-bold text-brand-coral uppercase tracking-wide">Limited to 10 seats to keep it hands-on</span>
+          <div className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-brand-coral/10 border border-brand-coral/20 mb-6">
+            <span className="w-2 h-2 rounded-full bg-brand-coral animate-pulse flex-shrink-0"></span>
+            <span className="text-sm font-bold text-brand-coral uppercase tracking-wide text-center">Limited to 10 seats to keep it hands-on</span>
           </div>
           <h2 className="font-sans font-bold text-3xl md:text-4xl text-gray-900 mb-6">
             Join the waitlist.
