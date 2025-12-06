@@ -25,9 +25,9 @@ export default function HeroGeometric({ className = '' }: HeroGeometricProps) {
                 transition={{ duration: 1.2, delay: 0.2, ease: 'easeOut' }}
             />
 
-            {/* Small accent circle */}
+            {/* Small accent circle - repositioned on mobile to avoid badge overlap */}
             <motion.div
-                className="absolute top-48 right-64 w-3 h-3 rounded-full bg-brand-coral/30"
+                className="absolute top-48 right-8 md:right-64 w-3 h-3 rounded-full bg-brand-coral/30"
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
