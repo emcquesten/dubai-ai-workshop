@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
   const { t } = useTranslation();
 
   return (
-    <footer className="bg-surface border-t border-gray-100 pt-12 pb-28">
+    <footer className="bg-gradient-to-b from-white to-gray-50 border-t border-gray-100 pt-12 pb-28">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex flex-col md:flex-row items-center gap-8 relative">
           {/* Logo - Left */}

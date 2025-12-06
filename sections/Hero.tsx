@@ -3,6 +3,8 @@ import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion
 import { MagneticButton } from '../components/ui/MagneticButton';
 import { ArrowDown, CheckCircle, Zap, TrendingUp, Send, Sparkles } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import HeroGeometric from '../components/ui/HeroGeometric';
+
 
 // Sample lead messages for the interactive demo
 const SAMPLE_MESSAGES = [
@@ -166,6 +168,9 @@ export const Hero: React.FC = () => {
             backgroundSize: '60px 60px'
           }}
         />
+
+        {/* Geometric decorative elements */}
+        <HeroGeometric />
       </div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
@@ -229,11 +234,11 @@ export const Hero: React.FC = () => {
           >
             {/* Main Card */}
             <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-brand-blue to-blue-600 rounded-3xl blur-2xl opacity-20"></div>
+              {/* Subtle glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-brand-blue to-blue-600 rounded-3xl blur-3xl opacity-[0.08]"></div>
 
-              {/* Card Container */}
-              <div className="relative bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 space-y-6">
+              {/* Card Container - refined subtle shadow */}
+              <div className="relative bg-white rounded-3xl shadow-[0_4px_40px_rgba(0,0,0,0.06)] border border-gray-100 p-8 space-y-6">
                 {/* Header with sparkle indicator */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">

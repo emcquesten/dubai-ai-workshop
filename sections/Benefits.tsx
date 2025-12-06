@@ -188,7 +188,7 @@ export const Benefits: React.FC = () => {
               style={{ opacity: 0 }}
             >
               {/* Abstract Visual Representation of "Flow" */}
-              <div className="relative aspect-[4/5] sm:aspect-square md:aspect-[4/3] rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 md:p-12 flex flex-col justify-center shadow-2xl">
+              <div className="relative aspect-[4/5] sm:aspect-square md:aspect-[4/3] rounded-3xl bg-white/10 backdrop-blur-xl border border-white/20 p-6 sm:p-8 md:p-12 flex flex-col justify-center shadow-xl">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 blur-[80px] rounded-full" />
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-brand-coral/20 blur-[60px] rounded-full" />
 
@@ -208,7 +208,7 @@ export const Benefits: React.FC = () => {
                   </div>
 
                   {/* Card 2 */}
-                  <div className="bg-gradient-to-br from-white via-white to-blue-50 backdrop-blur-md border border-white/60 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4 ml-auto shadow-2xl">
+                  <div className="bg-gradient-to-br from-white via-white to-blue-50 backdrop-blur-md border border-white/60 p-4 sm:p-6 rounded-2xl w-full sm:w-3/4 ml-auto shadow-lg">
                     <div className="flex items-center gap-3 mb-3">
                       <div className="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
                       <div className="text-[10px] uppercase tracking-widest text-brand-blue font-semibold">{t('hero.aiAgentReply')}</div>
