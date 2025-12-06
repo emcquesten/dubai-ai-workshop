@@ -238,7 +238,7 @@ export const Hero: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-brand-blue to-blue-600 rounded-3xl blur-3xl opacity-[0.08]"></div>
 
               {/* Card Container - refined subtle shadow */}
-              <div className="relative bg-white rounded-3xl shadow-[0_4px_40px_rgba(0,0,0,0.06)] border border-gray-100 p-8 space-y-6">
+              <div className="relative bg-white rounded-3xl shadow-[0_4px_40px_rgba(0,0,0,0.06)] border border-gray-100 p-8 space-y-6 min-h-[520px]">
                 {/* Header with sparkle indicator */}
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -309,7 +309,7 @@ export const Hero: React.FC = () => {
                         {isTyping ? t('hero.demoTyping') : t('hero.demoResponseLabel')}
                       </span>
                     </div>
-                    <p className="text-sm leading-relaxed min-h-[6rem]">
+                    <p className="text-sm leading-relaxed h-[6rem] overflow-y-auto">
                       {showDemo ? (
                         <>
                           {aiResponse}
@@ -321,17 +321,15 @@ export const Hero: React.FC = () => {
                     </p>
                   </div>
 
-                  {/* Try Again Button */}
-                  {showDemo && !isTyping && (
-                    <motion.button
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
+                  {/* Try Again Button - always reserve space to prevent layout shift */}
+                  <div className="h-6">
+                    <button
                       onClick={handleTryAgain}
-                      className="w-full py-2 text-sm text-brand-blue font-medium hover:text-blue-700 transition-colors flex items-center justify-center gap-2"
+                      className={`w-full py-1 text-sm text-brand-blue font-medium hover:text-blue-700 transition-all flex items-center justify-center gap-2 ${showDemo && !isTyping ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}
                     >
                       <span>↻</span> {t('hero.demoTryAnother')}
-                    </motion.button>
-                  )}
+                    </button>
+                  </div>
 
                   {/* Result Preview */}
                   <div className={`bg-gradient-to-r from-green-50 to-white border-2 border-green-200 rounded-2xl p-5 transition-all ${showDemo && !isTyping ? 'opacity-100' : 'opacity-50'}`}>
