@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from './ui/Button';
 import { FutureProofedLogo } from './FutureProofedLogo';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
@@ -21,7 +20,6 @@ export const Navbar: React.FC<NavbarProps> = ({ hideNavLinks = false }) => {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    // If we're on the home page, prevent default and smooth scroll
     if (window.location.pathname === '/') {
       e.preventDefault();
       const element = document.getElementById(sectionId);
@@ -35,7 +33,6 @@ export const Navbar: React.FC<NavbarProps> = ({ hideNavLinks = false }) => {
         });
       }
     }
-    // Otherwise, let the link navigate normally to /#section
   };
 
   const handleWaitlistClick = () => {
@@ -56,40 +53,69 @@ export const Navbar: React.FC<NavbarProps> = ({ hideNavLinks = false }) => {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-5 bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-sm' : 'py-8 bg-white/80 backdrop-blur-md'
-        }`}
-    >
+    <nav className="fixed top-0 left-0 right-0 z-50 pt-4">
+      {/* Use same container structure as page sections */}
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex items-center justify-between">
-          {/* Logo - Left */}
-          <a href="/" className="flex items-center gap-4">
-            <FutureProofedLogo className="h-10 w-auto" />
-          </a>
+        {/* Floating white container */}
+        <div
+          className="bg-white shadow-[0_2px_20px_rgba(0,0,0,0.1)] rounded-xl px-6 md:px-8 py-3.5"
+        >
+          <div className="flex items-center justify-between">
+            {/* Logo - Left */}
+            <a href="/" className="flex items-center shrink-0">
+              <FutureProofedLogo className="h-9 w-auto" />
+            </a>
 
-          {/* Navigation - Center (Desktop only) */}
-          {!hideNavLinks && (
-            <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center gap-8">
-              <a href="/#pain-points" onClick={(e) => handleNavClick(e, 'pain-points')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.challenges')}</a>
-              <a href="/#benefits" onClick={(e) => handleNavClick(e, 'benefits')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.benefits')}</a>
-              <a href="/#details" onClick={(e) => handleNavClick(e, 'details')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.workshop')}</a>
-              <a href="/#about" onClick={(e) => handleNavClick(e, 'about')} className="text-base text-gray-700 hover:text-brand-blue transition-colors font-medium">{t('nav.about')}</a>
+            {/* Navigation - Center (Desktop only) */}
+            {!hideNavLinks && (
+              <div className="hidden lg:flex items-center gap-1">
+                <NavLink href="/#pain-points" onClick={(e) => handleNavClick(e, 'pain-points')}>
+                  {t('nav.challenges')}
+                </NavLink>
+                <NavLink href="/#benefits" onClick={(e) => handleNavClick(e, 'benefits')}>
+                  {t('nav.benefits')}
+                </NavLink>
+                <NavLink href="/#details" onClick={(e) => handleNavClick(e, 'details')}>
+                  {t('nav.workshop')}
+                </NavLink>
+                <NavLink href="/#about" onClick={(e) => handleNavClick(e, 'about')}>
+                  {t('nav.about')}
+                </NavLink>
+              </div>
+            )}
+
+            {/* Right side - Language Switcher + CTAs */}
+            <div className="flex items-center gap-3">
+              <LanguageSwitcher />
+
+              {/* Join Waitlist Button */}
+              <button
+                onClick={handleWaitlistClick}
+                className="bg-brand-blue text-white font-medium text-sm px-5 py-2.5 rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
+              >
+                {t('nav.joinWaitlist')}
+              </button>
             </div>
-          )}
-
-          {/* Right side - Language Switcher + CTA */}
-          <div className="flex items-center gap-3">
-            <LanguageSwitcher />
-            <Button
-              onClick={handleWaitlistClick}
-              variant="outline"
-              className="!bg-brand-blue !text-white hover:!bg-blue-700 !border-brand-blue transition-colors text-base px-6 py-2.5 !rounded-lg"
-            >
-              {t('nav.joinWaitlist')}
-            </Button>
           </div>
         </div>
       </div>
     </nav>
   );
 };
+
+// NavLink component for consistent styling
+interface NavLinkProps {
+  href: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+  children: React.ReactNode;
+}
+
+const NavLink: React.FC<NavLinkProps> = ({ href, onClick, children }) => (
+  <a
+    href={href}
+    onClick={onClick}
+    className="px-4 py-2.5 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-all"
+  >
+    {children}
+  </a>
+);
