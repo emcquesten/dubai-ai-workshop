@@ -72,6 +72,7 @@ export const Hero: React.FC = () => {
   const [showDemo, setShowDemo] = useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
   const typingRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Parallax scroll
   const { scrollY } = useScroll();
@@ -96,6 +97,14 @@ export const Hero: React.FC = () => {
     return () => clearInterval(interval);
   }, [showDemo]);
 
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      if (typingRef.current) clearInterval(typingRef.current);
+    };
+  }, []);
+
   // Disable animations on mobile or if user prefers reduced motion
   const skipAnimations = shouldReduceMotion || isMobile;
 
@@ -103,11 +112,15 @@ export const Hero: React.FC = () => {
   const triggerAIResponse = (message: string) => {
     if (!message.trim()) return;
 
+    // Clean up any existing timers
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (typingRef.current) clearInterval(typingRef.current);
+
     setIsTyping(true);
     setAiResponse('');
 
     // Simulate thinking delay
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       const fullResponse = generateAIResponse(message);
       let currentIndex = 0;
 
@@ -136,6 +149,7 @@ export const Hero: React.FC = () => {
     setAiResponse('');
     setShowDemo(false);
     setIsTyping(false);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (typingRef.current) clearInterval(typingRef.current);
   };
 
