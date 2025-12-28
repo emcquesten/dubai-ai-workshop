@@ -58,7 +58,13 @@ const validateEmail = (email: string): EmailValidation => {
     return { isValid: false, error: 'Please enter a valid email address', suggestion: null };
   }
 
-  const [localPart, domain] = email.toLowerCase().split('@');
+  // Split email and validate we have exactly 2 parts (local@domain)
+  const emailParts = email.toLowerCase().split('@');
+  if (emailParts.length !== 2) {
+    return { isValid: false, error: 'Please enter a valid email address', suggestion: null };
+  }
+
+  const [localPart, domain] = emailParts;
 
   // Check for blocked domains
   if (BLOCKED_DOMAINS.includes(domain)) {
@@ -312,7 +318,7 @@ export const WaitlistForm: React.FC = () => {
                       id="phone"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="w-full pl-20 pr-5 py-4 bg-surface border border-gray-200 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
+                      className="w-full pl-20 pr-5 py-4 bg-surface border border-gray-200 rounded-xl text-gray-900 placeholder-gray-400 focus:outline-none focus:border-brand-blue focus:ring-2 focus:ring-brand-blue/20 transition-all"
                       placeholder="50 123 4567"
                       disabled={isSubmitting}
                     />
